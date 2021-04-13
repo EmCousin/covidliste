@@ -1,0 +1,11 @@
+<%= simple_form_for [:admin, @article], html: { class: 'form' } do |f| %>
+  <%= f.input :title, required: true %>
+  <%= f.input :slug, required: true %>
+  <%= f.input :meta_title %>
+  <%= f.input :description %>
+  <%= f.input :meta_description %>
+  <%= f.input :meta_keywords %>
+  <%= f.input :meta_robots %>
+  <%= f.input :content, as: :rich_text_area, required: true %>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>

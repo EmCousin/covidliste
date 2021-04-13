@@ -24,3 +24,6 @@ document.addEventListener("turbolinks:load", () => {
   leafletMap();
   $('[data-toggle="tooltip"]').tooltip();
 });
+
+require("trix");
+require("@rails/actiontext");

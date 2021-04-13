@@ -10,10 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_10_084648) do
+ActiveRecord::Schema.define(version: 2021_04_13_004911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.bigint "author_id"
+    t.string "slug", null: false
+    t.string "title", null: false
+    t.string "meta_title"
+    t.text "description"
+    t.text "meta_description"
+    t.string "meta_keywords"
+    t.string "meta_robots"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_articles_on_author_id"
+  end
 
   create_table "blazer_audits", force: :cascade do |t|
     t.bigint "user_id"
@@ -106,7 +158,7 @@ ActiveRecord::Schema.define(version: 2021_04_10_084648) do
     t.index ["vaccination_center_id"], name: "index_campaigns_on_vaccination_center_id"
     t.check_constraint "(available_doses > 0) AND (available_doses <= 1000)", name: "available_doses_gt_zero"
     t.check_constraint "(max_age > 0) AND (max_age > min_age)", name: "max_age_gt_zero"
-    t.check_constraint "(vaccine_type)::text = ANY ((ARRAY['pfizer'::character varying, 'moderna'::character varying, 'astrazeneca'::character varying, 'janssen'::character varying])::text[])", name: "vaccine_type_is_a_known_brand"
+    t.check_constraint "(vaccine_type)::text = ANY (ARRAY[('pfizer'::character varying)::text, ('moderna'::character varying)::text, ('astrazeneca'::character varying)::text, ('janssen'::character varying)::text])", name: "vaccine_type_is_a_known_brand"
     t.check_constraint "max_distance_in_meters > 0", name: "max_distance_in_meters_gt_zero"
     t.check_constraint "min_age > 0", name: "min_age_gt_zero"
     t.check_constraint "starts_at < ends_at", name: "starts_at_lt_ends_at"
@@ -239,6 +291,9 @@ ActiveRecord::Schema.define(version: 2021_04_10_084648) do
     t.index ["confirmer_id"], name: "index_vaccination_centers_on_confirmer_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "users", column: "author_id"
   add_foreign_key "campaign_batches", "campaigns"
   add_foreign_key "campaign_batches", "partners"
   add_foreign_key "campaign_batches", "vaccination_centers"

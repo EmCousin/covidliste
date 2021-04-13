@@ -1,0 +1,30 @@
+<%= link_to ('.add_article'), %i[new admin article], class: 'btn btn-primary'%>
+
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <% Article.column_names.each do |column_name| %>
+        <th>
+          <%= Article.human_attribute_name(column_name.to_sym) %>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td>
+          <%= link_to article.id, [:admin, article] %>
+        </td>
+        <td>
+          <%= article.author.full_name %>
+        </td>
+        <% article.attributes.except('id, author_id').each_value do |value| %>
+          <td>
+            <%= value %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

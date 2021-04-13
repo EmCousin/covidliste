@@ -1,6 +1,10 @@
 // Graphical variables
 @import "config/index";
 
+// Internal libraries
+
+@import "trix/dist/trix";
+
 // External libraries
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-select/dist/css/bootstrap-select.min";
@@ -11,6 +15,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "./actiontext.scss";
 
 .mtop2 {
   margin-top: 20px;

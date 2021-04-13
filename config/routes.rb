@@ -19,11 +19,13 @@ Rails.application.routes.draw do
       mount Blazer::Engine, at: "/blazer"
       mount Flipper::UI.app(Flipper), at: "/flipper"
     end
-  end
 
-  authenticate :user, lambda(&:super_admin?) do
-    mount PgHero::Engine, at: "admin/pghero"
-    mount Sidekiq::Web => "admin/sidekiq"
+    authenticate :user, lambda(&:super_admin?) do
+      mount PgHero::Engine, at: "/pghero"
+      mount Sidekiq::Web, at: "/sidekiq"
+
+      resources :articles
+    end
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
@@ -82,6 +84,8 @@ Rails.application.routes.draw do
   get "/mentions_legales" => "pages#mentions_legales", :as => :mentions_legales
   get "/privacy" => "pages#privacy", :as => :privacy
   get "/faq" => "pages#faq", :as => :faq
+
+  resources :articles, path: "/", param: :slug, only: :show
 
   ## robots.txt
   get "/robots.txt", to: "pages#robots"

@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   include HasPhoneNumberConcern
+  include Author
+
   rolify
 
   devise :database_authenticatable,
