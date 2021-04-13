@@ -83,7 +83,7 @@ Rails.application.routes.draw do
   resources :matches, only: [:show, :update], param: :match_confirmation_token
 
   ## pages
-  get "/mentions_legales" => "pages#mentions_legales", as: :mentions_legales
+  get "/mentions_legales" => "pages#mentions_legales", :as => :mentions_legales
   get "/privacy" => "pages#privacy", :as => :privacy
   get "/faq" => "pages#faq", :as => :faq
 

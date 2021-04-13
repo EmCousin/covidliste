@@ -4,12 +4,12 @@ module Admin
 
     def create
       @article.publish!
-      redirect_to %i[admin articles], notice: t('.success')
+      redirect_to %i[admin articles], notice: t(".success")
     end
 
     def destroy
       @article.unpublish!
-      redirect_to %i[admin articles], notice: t('.success')
+      redirect_to %i[admin articles], notice: t(".success")
     end
 
     private

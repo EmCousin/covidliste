@@ -427,7 +427,7 @@ SimpleForm.setup do |config|
     radio_buttons: :vertical_collection,
     range: :vertical_range,
     rich_text_area: :vertical_rich_text_area,
-    time: :vertical_multi_select,
+    time: :vertical_multi_select
   }
 
   # enable custom form wrappers

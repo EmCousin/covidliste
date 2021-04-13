@@ -10,7 +10,7 @@ shared_examples "a Publishable resource" do
   it { is_expected.to have_db_column(:published_at).of_type(:datetime) }
 
   describe "scopes" do
-    describe '.published' do
+    describe ".published" do
       subject { model.class.published.to_sql }
 
       it { is_expected.to eq model.class.where.not(published_at: nil).to_sql }
