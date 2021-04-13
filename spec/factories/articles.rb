@@ -1,10 +1,12 @@
 FactoryBot.define do
   factory :article do
-    title { "MyString" }
-    meta_title { "MyString" }
-    description { "MyText" }
-    meta_description { "MyText" }
-    meta_keywords { "MyString" }
-    meta_robots { "MyString" }
+    association :author, factory: :user
+    title { Faker::Lorem.word }
+    slug { Faker::Internet.slug }
+    meta_title { Faker::Lorem.word }
+    description { Faker::Lorem.paragraph }
+    meta_description { Faker::Lorem.paragraph }
+    meta_keywords { Faker::Lorem.word }
+    meta_robots { "noindex,nofollow" }
   end
 end

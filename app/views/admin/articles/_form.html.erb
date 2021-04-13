@@ -1,11 +1,16 @@
-<%= simple_form_for [:admin, @article], html: { class: 'form' } do |f| %>
-  <%= f.input :title, required: true %>
-  <%= f.input :slug, required: true %>
-  <%= f.input :meta_title %>
-  <%= f.input :description %>
-  <%= f.input :meta_description %>
-  <%= f.input :meta_keywords %>
-  <%= f.input :meta_robots %>
-  <%= f.input :content, as: :rich_text_area, required: true %>
-  <%= f.submit class: 'btn btn-primary' %>
+<%= simple_form_for [:admin, @article], html: { class: "form row" } do |f| %>
+  <div class="col-sm">
+    <%= f.input :slug, required: true, placeholder: "my-awesome-article" %>
+    <%= f.input :meta_title, placeholder: "My Awesome Article's SEO optimized title" %>
+    <%= f.input :meta_description, placeholder: "My Awesome Article's SEO optimized description" %>
+    <%= f.input :meta_keywords, placeholder: "your,keywords,are,here" %>
+    <%= f.input :meta_robots, placeholder: "Example: index,follow" %>
+  </div>
+  <div class="col-sm">
+    <%= f.input :title, required: true, placeholder: "My Awesome Article" %>
+    <%= f.input :description %>
+    <%= f.input :content, as: :rich_text_area, required: true %>
+
+    <%= f.submit class: "btn btn-primary mt-4" %>
+  </div>
 <% end %>

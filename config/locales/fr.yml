@@ -5,6 +5,18 @@ fr:
       campaign:
         one: campagne
     attributes:
+      article:
+        title: Titre
+        author_id: Auteur(e)
+        author: Auteur(e)
+        slug: URL relative
+        meta_title: Titre SEO
+        meta_description: Description SEO
+        meta_keywords: Mots-clés SEO
+        content: Contenu
+        created_at: Date de création
+        updated_at: Date de modification
+        published_at: Date de publication
       user:
         firstname: Prénom
         lastname: Nom
@@ -246,3 +258,21 @@ fr:
       long: "%A %d %B %Y %Hh%M"
       short: "%d %b %Hh%M"
     pm: pm
+
+  # Defaults
+  system_buttons:
+    edit: Modifier
+    delete: Supprimer
+    publish: Publier
+    unpublish: Dépublier
+
+  # Views
+  admin:
+    articles:
+      index:
+        add_article: "Créer un nouvel article"
+    publications:
+      create:
+        success: "Article publié"
+      destroy:
+        success: "Article dépublié"

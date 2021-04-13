@@ -82,6 +82,7 @@ group :test do
   gem "rspec-sidekiq"
   gem "rspec_junit_formatter"
   gem "selenium-webdriver"
+  gem "shoulda-matchers"
   gem "spring-commands-rspec", "~> 1.0"
   gem "webmock"
 end

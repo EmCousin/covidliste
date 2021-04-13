@@ -24,7 +24,9 @@ Rails.application.routes.draw do
       mount PgHero::Engine, at: "/pghero"
       mount Sidekiq::Web, at: "/sidekiq"
 
-      resources :articles
+      resources :articles do
+        resource :publication, only: %i[create destroy]
+      end
     end
   end
 
@@ -81,7 +83,7 @@ Rails.application.routes.draw do
   resources :matches, only: [:show, :update], param: :match_confirmation_token
 
   ## pages
-  get "/mentions_legales" => "pages#mentions_legales", :as => :mentions_legales
+  get "/mentions_legales" => "pages#mentions_legales", as: :mentions_legales
   get "/privacy" => "pages#privacy", :as => :privacy
   get "/faq" => "pages#faq", :as => :faq
 

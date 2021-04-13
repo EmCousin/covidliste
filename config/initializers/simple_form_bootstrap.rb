@@ -403,6 +403,16 @@ SimpleForm.setup do |config|
     b.use :hint, wrap_with: {tag: "small", class: "form-text text-muted"}
   end
 
+  # Custom Rich Text Area (ActionText)
+  config.wrappers :vertical_rich_text_area, tag: "div", class: "form-label-group", error_class: "form-group-invalid", valid_class: "form-group-valid" do |b|
+    b.use :html5
+    b.optional :readonly
+    b.use :label
+    b.use :input, error_class: "is-invalid", valid_class: "is-valid"
+    b.use :full_error, wrap_with: {tag: "div", class: "invalid-feedback"}
+    b.use :hint, wrap_with: {tag: "small", class: "form-text text-muted"}
+  end
+
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :vertical_form
 
@@ -416,7 +426,8 @@ SimpleForm.setup do |config|
     file: :vertical_file,
     radio_buttons: :vertical_collection,
     range: :vertical_range,
-    time: :vertical_multi_select
+    rich_text_area: :vertical_rich_text_area,
+    time: :vertical_multi_select,
   }
 
   # enable custom form wrappers

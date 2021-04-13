@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe User, type: :model do
   let(:user) { build(:user) }
 
+  it_behaves_like "an Author"
+
   describe "Fields validation" do
     it "has a valid factory" do
       expect(user).to be_valid

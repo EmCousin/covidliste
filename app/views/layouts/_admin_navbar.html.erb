@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to 'Covidliste Admin', :admin, class: 'navbar-brand' %>
+  <button
+    type="button"
+    class="navbar-toggler"
+    aria-controls="navbarNavDropdown"
+    aria-expanded="false"
+    aria-label="toggle-navigation"
+    data-target="#navbarNavDropdown"
+    data-toggle="collapse"
+  >
+    <span class= "navbar-toggler-icon"></span>
+  </button>
+
+  <div id="navbarNavDropdown" class="collapse navbar-collapse">
+    <ul class="navbar-nav ml-auto">
+      <% if current_user.super_admin? %>
+        <li class="nav-item dropdown">
+          <%= link_to "Outils Com", "", id: "dropdown42", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { expanded: false, haspopup: true } %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown42">
+            <%= link_to Article.model_name.human.pluralize, %i[admin articles], class: "dropdown-item" %>
+          </div>
+        </li>
+      <% end %>
+      <% if current_user.admin? %>
+        <li class="nav-item dropdown">
+          <%= link_to "Outils Support", "", id: "dropdown12", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { expanded: false, haspopup: true } %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown10">
+            <%= link_to "Volontaires", %i[admin users], class: "dropdown-item" %>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <%= link_to "Outils Supply", "", id: "dropdown12", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { expanded: false, haspopup: true } %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown10">
+            <%= link_to "Lieux de vaccination", %i[admin vaccination_centers], class: "dropdown-item" %>
+            <%= link_to "Statistiques volontaires", %i[admin stats], class: "dropdown-item" %>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <%= link_to "Outils DataScience", "", id: "dropdown12", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { expanded: false, haspopup: true } %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown10">
+            <%= link_to "Blazer", %i[admin blazer], class: "dropdown-item", target: "_blank" %>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <%= link_to "Outils Dev", "", id: "dropdown12", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { expanded: false, haspopup: true } %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown10">
+            <%= link_to "PgHero", %i[admin pg_hero], class: "dropdown-item", target: "_blank" %>
+            <%= link_to "Sidekiq", %i[admin sidekiq_web], class: "dropdown-item", target: "_blank" %>
+          </div>
+        </li>
+      <% end %>
+      <% if current_user %>
+        <li class="nav-item dropdown">
+          <%= link_to "", id: "dropdown09", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { expanded: false, haspopup: true } do %>
+            <%= current_user.full_name %>
+            <% if current_user.admin? %>
+              <span class="badge badge-danger">Admin</span>
+            <% end %>
+          <% end %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown09">
+            <%= link_to "Profil", :profile, class: "dropdown-item" %>
+            <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item dropdown">
+          <%= link_to "", id: "dropdown09", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { expanded: false, haspopup: true } do %>
+            <%= current_user.full_name %>
+            <% if current_user.admin? %>
+              <span class="badge badge-danger">Admin</span>
+            <% end %>
+          <% end %>
+          <div class="<%= controller_name == 'sessions' ? 'nav-item active' : 'nav-item' %>">
+            <%= link_to "Espace personnel", new_user_session_path, class: "nav-link" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

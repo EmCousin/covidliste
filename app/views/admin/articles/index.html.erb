@@ -1,29 +1,37 @@
-<%= link_to ('.add_article'), %i[new admin article], class: 'btn btn-primary'%>
+<%= link_to t('.add_article'), %i[new admin article], class: 'btn btn-primary'%>
 
 <table class="table mt-4">
   <thead>
     <tr>
-      <% Article.column_names.each do |column_name| %>
-        <th>
-          <%= Article.human_attribute_name(column_name.to_sym) %>
-        </th>
-      <% end %>
+      <th><%= Article.human_attribute_name(:id) %></th>
+      <th><%= Article.human_attribute_name(:author_id) %></th>
+      <th><%= Article.human_attribute_name(:slug) %></th>
+      <th><%= Article.human_attribute_name(:title) %></th>
+      <th><%= Article.human_attribute_name(:updated_at) %></th>
+      <th><%= Article.human_attribute_name(:published_at) %></th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @articles.each do |article| %>
       <tr>
+        <td><%= link_to article.id, [:admin, article] %></td>
+        <td><%= article.author.full_name %></td>
+        <td><%= link_to article.slug, article_path(article.slug) %></td>
+        <td><%= article.title %>
+        <td><%= article.updated_at.to_s(:short) %>
+        <td><%= article.published_at&.to_s(:short) %>
         <td>
-          <%= link_to article.id, [:admin, article] %>
+          <%= link_to t('system_buttons.edit'), [:edit, :admin, article] %>
+          |
+          <%= link_to t('system_buttons.delete'), [:admin, article], method: :delete, data: { confirm: 'Vous êtes sûr(e) ?' } %>
+          |
+          <% if article.published? %>
+            <%= link_to t('system_buttons.unpublish'), [:admin, article, :publication], method: :delete %>
+          <% else %>
+          <%= link_to t('system_buttons.publish'), [:admin, article, :publication], method: :post %>
+          <% end %>
         </td>
-        <td>
-          <%= article.author.full_name %>
-        </td>
-        <% article.attributes.except('id, author_id').each_value do |value| %>
-          <td>
-            <%= value %>
-          </td>
-        <% end %>
       </tr>
     <% end %>
   </tbody>
