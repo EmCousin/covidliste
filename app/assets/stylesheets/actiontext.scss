@@ -9,7 +9,9 @@
 // <action-text-attachment> element we wrap around attachments. Otherwise,
 // images in galleries will be squished by the max-width: 33%; rule.
 
-trix-toolbar > .trix-button-row > span.trix-button-group.trix-button-group--file-tools {
+trix-toolbar
+  > .trix-button-row
+  > span.trix-button-group.trix-button-group--file-tools {
   display: none;
 }
 

@@ -10,6 +10,6 @@ document.addEventListener("turbolinks:load", () => {
 });
 
 window.addEventListener("trix-file-accept", (event) => {
-  event.preventDefault()
-  alert("File attachment not supported!")
-})
+  event.preventDefault();
+  alert("File attachment not supported!");
+});
