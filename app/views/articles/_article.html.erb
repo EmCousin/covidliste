@@ -1,12 +1,4 @@
-<%= content_for(:append_to_head) do %>
-  <%= tag.meta name: 'title', content: article.meta_title %>
-  <%= tag.meta name: 'description', content: article.meta_description %>
-  <%= tag.meta name: 'keyuwords', content: article.meta_keywords %>
-  <%= tag.meta name: 'robots', content: article.meta_robots %>
-<% end %>
+<h1><%= article.title %></h1>
 
-<div class="container my-5">
-  <h1><%= article.title %></h1>
+<%= article.content %>
 
-  <%= article.content %>
-</div>

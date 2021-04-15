@@ -1,1 +1,15 @@
-<%= render @article %>
+<div class="container my-5">
+  <div class="mb-4">
+    <%= link_to t('system_buttons.back'), %i[admin articles], class: 'btn btn-default' %>
+    <%= link_to t('system_buttons.edit'), [:edit, :admin, @article], class: 'btn btn-primary' %>
+    <% if @article.published? %>
+      <%= link_to t('system_buttons.show'), article_path(@article.slug), class: 'btn btn-primary' %>
+      <%= link_to t('system_buttons.unpublish'), [:admin, @article, :publication], method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+      <%= link_to t('system_buttons.publish'), [:admin, @article, :publication], method: :post, class: 'btn btn-success' %>
+    <% end %>
+    <%= link_to t('system_buttons.delete'), [:admin, @article], method: :post, class: 'btn btn-danger', data: { confirm: t('confirm.are_you_sure') } %>
+  </div>
+
+  <%= render @article %>
+</div>

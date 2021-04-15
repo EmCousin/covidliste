@@ -265,6 +265,11 @@ fr:
     delete: Supprimer
     publish: Publier
     unpublish: Dépublier
+    show: Voir
+    back: Retour
+
+  confirm:
+    are_you_sure: Êtes-vous sûr(e)
 
   # Views
   admin:
