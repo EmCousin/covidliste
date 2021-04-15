@@ -4,10 +4,11 @@ describe ArticlesController, type: :controller do
   render_views
 
   let(:article) { create :article, :published }
+  let(:slug) { article.slug }
 
   describe "#show" do
     before do
-      get :show, params: {slug: article.slug}
+      get :show, params: {slug: slug}
     end
 
     it { is_expected.to respond_with :success }
@@ -15,7 +16,7 @@ describe ArticlesController, type: :controller do
     it { is_expected.to render_template "articles/show" }
 
     context "when the article does not exist" do
-      before { article.destroy }
+      let(:slug) { "a-slug-that-does-not-exist" }
 
       it { expect(assigns(:article)).to be nil }
       it { is_expected.to render_template "articles/not_found" }

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
       # admin tools
       mount Blazer::Engine, at: "/blazer"
-      mount Flipper::UI.app(Flipper), at: "/flipper"
+      mount Flipper::UI.app(Flipper), at: "/flipper", as: :flipper
     end
 
     authenticate :user, lambda(&:super_admin?) do

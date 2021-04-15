@@ -281,3 +281,8 @@ fr:
         success: "Article publié"
       destroy:
         success: "Article dépublié"
+  articles:
+    not_found:
+      title: Oups !
+      headline: Cette page n'existe pas !
+      back: Retour à l'accueil

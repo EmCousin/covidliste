@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_04_13_004911) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_id"], name: "index_articles_on_author_id"
     t.index ["published_at"], name: "index_articles_on_published_at"
+    t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
   create_table "blazer_audits", force: :cascade do |t|
