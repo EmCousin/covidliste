@@ -8,8 +8,3 @@ document.addEventListener("turbolinks:load", () => {
   leafletMap();
   $('[data-toggle="tooltip"]').tooltip();
 });
-
-window.addEventListener("trix-file-accept", (event) => {
-  event.preventDefault();
-  alert("File attachment not supported!");
-});
