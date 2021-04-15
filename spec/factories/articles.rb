@@ -8,5 +8,9 @@ FactoryBot.define do
     meta_description { Faker::Lorem.paragraph }
     meta_keywords { Faker::Lorem.word }
     meta_robots { "noindex,nofollow" }
+
+    trait :published do
+      published_at { Time.current }
+    end
   end
 end
