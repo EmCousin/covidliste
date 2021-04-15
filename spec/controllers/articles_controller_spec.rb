@@ -7,7 +7,7 @@ describe ArticlesController, type: :controller do
 
   describe "#show" do
     before do
-      get :show, params: { slug: article.slug }
+      get :show, params: {slug: article.slug}
     end
 
     it { is_expected.to respond_with :success }
